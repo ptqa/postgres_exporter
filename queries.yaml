@@ -114,7 +114,7 @@ pg_statio_user_tables:
         description: "Number of buffer hits in this table's TOAST table indexes (if any)"
         
 pg_database:
-  query: " SELECT pg_database.datname, pg_database_size(pg_database.datname) as size FROM pg_database" 
+  query: "SELECT pg_database.datname, pg_database_size(pg_database.datname) as size FROM pg_database where datname != 'template1' and datname != 'template0' and datname !='postgres'"
   metrics:
     - datname:
         usage: "LABEL"
