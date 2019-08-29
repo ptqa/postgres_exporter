@@ -129,6 +129,7 @@ pg_connection_stats:
         , idle
         , idle_in_txn
         , (select coalesce(extract(epoch from (max(now() - state_change))),0) from pg_stat_activity where state = 'idle in transaction') as max_idle_in_txn_time
+        , (select coalesce(extract(epoch from (max(now() - query_start))),0) from pg_stat_activity where state IN ('idle in transaction','active') and query NOT LIKE 'autovacuum%') as max_idle_active_time
         , (select coalesce(extract(epoch from (max(now() - query_start))),0) from pg_stat_activity where state <> 'idle') as max_query_time
         , max_connections
         from (
