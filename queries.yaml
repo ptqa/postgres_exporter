@@ -153,6 +153,9 @@ pg_connection_stats:
     - max_idle_in_txn_time:
         usage: "GAUGE"
         description: "Length of time in seconds of the longest idle in transaction session"
+    - max_idle_active_time:
+        usage: "GAUGE"
+        description: "Length of time in seconds of the longest idle in transaction OR active session, excluding autovacuum"
     - max_query_time:
         usage: "GAUGE"
         description: "Length of time in seconds of the longest running query"
