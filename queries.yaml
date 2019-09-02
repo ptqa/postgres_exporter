@@ -192,7 +192,7 @@ pg_stat_statements:
         description: "Mean time spent in the statement, in milliseconds"
 
 pg_table_size:
-  query: "SELECT nspname || '.' || relname AS 'relation',pg_relation_size(C.oid) AS 'size' FROM pg_class C LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace) WHERE nspname  IN ('public');"
+  query: "SELECT nspname || '.' || relname AS \"relation\", pg_relation_size(C.oid) AS \"size\" FROM pg_class C LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace) WHERE nspname  IN ('public');"
   metrics:
     - relation:
         usage: "LABEL"
