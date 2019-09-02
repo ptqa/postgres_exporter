@@ -190,3 +190,13 @@ pg_stat_statements:
     - mean_time:
         usage: "GAUGE"
         description: "Mean time spent in the statement, in milliseconds"
+
+pg_table_size:
+  query: "SELECT nspname || '.' || relname AS 'relation',pg_relation_size(C.oid) AS 'size' FROM pg_class C LEFT JOIN pg_namespace N ON (N.oid = C.relnamespace) WHERE nspname  IN ('public');"
+  metrics:
+    - relation:
+        usage: "LABEL"
+        description: "Name of relation"
+    - size:
+        usage: "GAUGE"
+        description: "Size of relation"
